@@ -5,10 +5,14 @@ exports.data = function (request, response) {
     })
 
     function endApiController(pageData, renderResponse) {
+        // console.log(pageData.results[0]);
+        
 
         renderResponse.pageInfo = {};
         renderResponse.pageInfo.title = 'api page';
-        renderResponse.pageInfo.pageData = pageData.results[0].formatted_address;
+        renderResponse.pageInfo.city = pageData.results[0].formatted_address;
+        renderResponse.pageInfo.lat = pageData.results[0].geometry.location.lat;
+        renderResponse.pageInfo.lng = pageData.results[0].geometry.location.lng;
         renderResponse.render('api/Api', renderResponse.pageInfo);
     }
 
